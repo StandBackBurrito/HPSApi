@@ -19,7 +19,7 @@ namespace HPSApi
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var applicant = new { FullName = "Justin Patterson", Email = "justinpatterson@gmail.com", PhoneNumber = "817.307.6341" };
+                var applicant = new Applicant { FullName = "Justin Patterson", Email = "justinpatterson@gmail.com", PhoneNumber = "817.307.6341" };
                 client.DefaultRequestHeaders.Add("X-HPS", "apply");
                 client.PostAsJsonAsync("api/v1/applicants", applicant).Wait();
             }
