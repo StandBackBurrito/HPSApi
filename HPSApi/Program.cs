@@ -23,6 +23,18 @@ namespace HPSApi
                 client.DefaultRequestHeaders.Add("X-HPS", "apply");
                 client.PostAsJsonAsync("api/v1/applicants", applicant).Wait();
             }
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://hps-dev-prescreen.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                client.DefaultRequestHeaders.Add("X-HPS", "apply");
+                var result = client.GetStringAsync(@"api/v1/applicants/justinpatterson@gmail.com").Result;
+
+                Console.WriteLine(result);
+            }
         }
     }    
 }
